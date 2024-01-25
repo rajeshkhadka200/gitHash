@@ -1,19 +1,21 @@
 .home_container {
-  width: 68%;
+  width: 70%;
   margin: 0 auto;
-  height: 80vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 35px;
+  gap: 30px;
 }
 .home_container h2 {
-  font-size: 48px;
+  font-size: 50px;
   text-align: center;
 }
-.home_container h2 span{
-    color: #994abe;;
+.home_container h2 span {
+  background: linear-gradient(120deg, #3093ee, #0ec3fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .home_container p {
