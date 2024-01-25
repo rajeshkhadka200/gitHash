@@ -1,12 +1,12 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.4.0",
     "express": "^4.18.2",
+    "mongoose": "^8.1.1",
     "nodemon": "^3.0.3"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon --env-file=.env server.js"
   },
   "type": "module",
   "name": "server",

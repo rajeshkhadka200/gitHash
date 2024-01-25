@@ -16,7 +16,7 @@ button {
 }
 
 :root {
-  --primary: #19191c;
+  --primary:#000000;
   --secondary: #242526;
   --button: #fff;
   --white: #ffffff;

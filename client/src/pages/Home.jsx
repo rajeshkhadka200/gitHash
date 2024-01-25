@@ -7,7 +7,7 @@ const Home = () => {
       <div className="home_container">
         <h2>
           Code to Blog: Effortless GitHub Updates on Hashnode <br />
-          <span> with GitHash</span>
+          <span> with GitHash </span> 💻🚀
         </h2>
         <p>
           Elevate your commits with GitHash! Effortlessly sync GitHub changes to
