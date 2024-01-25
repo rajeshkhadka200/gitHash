@@ -1,0 +1,30 @@
+.home_container {
+  width: 68%;
+  margin: 0 auto;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+}
+.home_container h2 {
+  font-size: 48px;
+  text-align: center;
+}
+.home_container h2 span{
+    color: #994abe;;
+}
+
+.home_container p {
+  max-width: 600px;
+  text-align: center;
+  color: var(--text);
+  font-size: 20px;
+}
+.home_container button {
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 15px;
+}

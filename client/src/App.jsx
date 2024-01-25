@@ -1,9 +1,16 @@
-import { useState } from "react";
-
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Nav from "./components/Nav";
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <>WELCOME TO GITHASH</>;
+  return (
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App;

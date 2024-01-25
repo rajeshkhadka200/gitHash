@@ -5,14 +5,11 @@ export const publishBlog = async (req, res) => {
   // Handle the received data as needed
 
   console.log("commit message:", commitMessage);
-  console.log(" changes:", changes);
-  console.log(" code changes:", codeChanges);
-  console.log(" GitHub Repo URL:", githubRepoUrl);
+  console.log("changes:", changes);
+  console.log("code changes:", codeChanges);
+  console.log("GitHub Repo URL:", githubRepoUrl);
 
   res.status(200).json({
-    commitMessage,
-    changes,
-    codeChanges,
-    githubRepoUrl,
+    data: req.body,
   });
 };
