@@ -24,12 +24,17 @@ const SetupHashnode = () => {
   }, []);
 
   const addPub = async () => {
+    if (config.pubId === "") {
+      toast.error("Publication Id is required");
+      return;
+    }
     try {
       const res = await axios.patch(`${api_url}/user/addpub`, {
         pubId: config.pubId,
         userId: userId,
       });
       toast.success("Publication Added");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("Unable to add Publication Id ");
@@ -37,11 +42,16 @@ const SetupHashnode = () => {
   };
 
   const addkey = async () => {
+    if (config.apiKey === "") {
+      toast.error("API Key is required");
+      return;
+    }
     try {
       const res = await axios.patch(`${api_url}/user/addApiKey`, {
         apiKey: config.apiKey,
         userId: userId,
       });
+      window.location.reload();
       toast.success("API Key Added");
     } catch (error) {
       console.log(error);
@@ -87,7 +97,9 @@ const SetupHashnode = () => {
                   addkey();
                 }}
               >
-                {user?.hashnodeApiKey ? "API key Added ✅" : "Add Hashnode Api Key"}
+                {user?.hashnodeApiKey
+                  ? "API key Added ✅"
+                  : "Add Hashnode Api Key"}
               </button>
             </div>
             <div className="input_box">

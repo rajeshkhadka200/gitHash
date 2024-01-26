@@ -7,10 +7,11 @@ import { useGoogleLogin } from "react-google-login";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Nav = () => {
   const navigate = useNavigate();
   const api_url = import.meta.env.VITE_API_URL;
-  
+
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState();
 
@@ -61,7 +62,8 @@ const Nav = () => {
       localStorage.setItem("userId", res.data.user._id);
       localStorage.setItem("email", res.data.user.email);
       localStorage.setItem("image", res.data.user.profilePic);
-      alert(res.data.mesg);
+
+      toast.success(res.data.mesg);
       setUser(res.data.user);
       // send the user state to dashboard
       navigate("/dashboard", { state: { user: res.data.user } });

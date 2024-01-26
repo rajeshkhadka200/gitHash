@@ -63,7 +63,7 @@ const Dashboard = () => {
       </div>
       {/* tracks */}
       <SetupHashnode />
-      <NavLink to="/my-repo">
+      <NavLink to="/repo">
         <div className="right_arrow">
           <FaArrowRight size={20} />
         </div>
