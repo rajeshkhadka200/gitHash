@@ -93,6 +93,10 @@ const SetupHashnode = () => {
               )}
 
               <button
+                style={{
+                  cursor: user?.hashnodeApiKey ? "not-allowed" : "pointer",
+                }}
+                disabled={user?.hashnodeApiKey ? true : false}
                 onClick={() => {
                   addkey();
                 }}

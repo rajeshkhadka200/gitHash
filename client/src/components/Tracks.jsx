@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/tracks.css";
+import { NavLink } from "react-router-dom";
 
 const Tracks = () => {
   return (
@@ -14,7 +15,9 @@ const Tracks = () => {
             <div className="branch">
               published : <span>main</span>{" "}
             </div>
-            <div className="seeall">See details</div>
+            <NavLink to="/repo/details/gdhsgdsj">
+              <div className="seeall">See details</div>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { connectDB } from "./db/db.js";
 import cors from "cors";
 
 // imports routes
-import testRouter from "./router/testRouter.js";
 import blogRouter from "./router/blogRouter.js";
 import auth from "./router/authRouter.js";
 
@@ -14,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // use routes
-app.use("/api", testRouter);
 app.use("/api", blogRouter);
 app.use("/api/user", auth);
 
