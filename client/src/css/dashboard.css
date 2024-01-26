@@ -1,0 +1,44 @@
+.dash_con {
+  width: 60%;
+  margin: 0px auto;
+}
+.token_viewer {
+  margin-top: 50px;
+  /* background-color: var(--secondary); */
+  padding: 25px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+}
+.heading {
+  margin-bottom: 20px;
+}
+.heading p {
+  color: #ccc;
+  margin-top: 5px;
+}
+.input_box {
+  display: flex;
+  gap: 20px;
+}
+.token_viewer input {
+  width: 350px;
+  border: 0;
+  outline: 0;
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 10px 10px;
+  border-radius: 7px;
+  cursor: not-allowed;
+  font-size: 15px;
+  /* color: var(--white); */
+}
+.token_viewer button {
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  padding: 7px 10px;
+  border-radius: 7px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+}

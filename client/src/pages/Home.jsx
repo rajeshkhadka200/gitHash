@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "../css/home.css";
 import Footer from "../components/Footer";
+
 const Home = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    if (id) {
+      navigate("/dashboard");
+    }
+  }, []);
   return (
     <>
       <div className="home_container">
@@ -13,7 +23,9 @@ const Home = () => {
           Elevate your commits with GitHash! Effortlessly sync GitHub changes to
           Hashnode for concise and impactful updates.
         </p>
-        <button>View on GitHub</button>
+        <a target="_blank" href="https://github.com/rajeshkhadka200/gitHash">
+          <button>View on GitHub</button>
+        </a>
       </div>
       {/* <Footer /> */}
     </>

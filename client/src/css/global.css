@@ -14,11 +14,15 @@ button {
   border: 0;
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+}
 
 :root {
-  --primary:#000000;
+  --primary: #000000;
   --secondary: #242526;
   --button: #fff;
   --white: #ffffff;
   --text: #d2d2d2a6;
+  --border: #262626;
 }

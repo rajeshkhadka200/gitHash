@@ -15,6 +15,7 @@ nav .logo {
   font-size: 19px;
   letter-spacing: 1px;
   font-family: "Lobster", sans-serif;
+  color: var(--white);
 }
 nav button {
   background-color: var(--button);
@@ -24,4 +25,19 @@ nav button {
   border-radius: 7px;
   font-weight: 500;
   font-size: 15px;
+}
+.img_logout_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.logout{
+  cursor: pointer;
+}
+nav img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50vw;
+  cursor: pointer;
 }
