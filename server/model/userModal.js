@@ -13,10 +13,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  apiKey: {
+  token: {
     type: String,
     required: false,
   },
+  publication: {
+    type: String,
+    required: false,
+  },
+  hashnodeApiKey: {
+    type: String,
+    required: false,
+  },
+
   createdAt: {
     type: Date,
     default: new Date(),

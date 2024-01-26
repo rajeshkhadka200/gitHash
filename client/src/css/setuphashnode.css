@@ -1,26 +1,32 @@
-.dash_con {
+.setup_con {
   width: 60%;
   margin: 0px auto;
 }
-.token_viewer {
+.setup_viewer {
   margin-top: 50px;
   /* background-color: var(--secondary); */
   padding: 25px;
   border: 1.5px solid var(--border);
   border-radius: 14px;
 }
-.heading {
+.setup_viewer .heading {
   margin-bottom: 20px;
 }
 .heading p {
   color: #ccc;
   margin-top: 5px;
 }
-.input_box {
+
+.setup_viewer .input_box {
   display: flex;
   gap: 20px;
 }
-.token_viewer input {
+.setup_viewer .con_input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.setup_viewer input {
   width: 350px;
   border: 0;
   outline: 0;
@@ -28,11 +34,10 @@
   color: var(--text);
   padding: 10px 10px;
   border-radius: 7px;
-  cursor: not-allowed;
   font-size: 15px;
   /* color: var(--white); */
 }
-.token_viewer button {
+.setup_viewer button {
   border: 0;
   outline: 0;
   color: var(--text);
@@ -41,20 +46,5 @@
   background-color: #fff;
   color: #000;
   font-weight: 500;
-}
-
-.right_arrow {
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  background-color: var(--secondary);
-  position: absolute;
-  top: 50%;
-  right: 80px;
-  border: 2px solid var(--border);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
+  width: 180px;
 }

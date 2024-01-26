@@ -21,7 +21,7 @@ export const auth = async (req, res) => {
       name,
       email,
       profilePic: imageUrl,
-      apiKey,
+      token: apiKey,
     });
 
     return res.status(200).json({
@@ -45,6 +45,51 @@ export const getUser = async (req, res) => {
       return res.status(200).json({
         mesg: "User found",
         user,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      mesg: "Internal server error",
+      error,
+    });
+  }
+};
+
+export const addPublication = async (req, res) => {
+  const { pubId, userId } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: { publication: pubId } },
+      { new: true }
+    );
+
+    if (updatedUser) {
+      return res.status(200).json({
+        mesg: "Publication added",
+        user: updatedUser,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      mesg: "Internal server error",
+      error,
+    });
+  }
+};
+export const appAPIKey = async (req, res) => {
+  const { apiKey, userId } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: { hashnodeApiKey: apiKey } },
+      { new: true }
+    );
+
+    if (updatedUser) {
+      return res.status(200).json({
+        mesg: "Publication added",
+        user: updatedUser,
       });
     }
   } catch (error) {

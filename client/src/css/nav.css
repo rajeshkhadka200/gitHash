@@ -40,4 +40,5 @@ nav img {
   width: 40px;
   border-radius: 50vw;
   cursor: pointer;
+  outline: 3px solid var(--border);
 }

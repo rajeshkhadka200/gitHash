@@ -9,9 +9,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Nav = () => {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
   const api_url = import.meta.env.VITE_API_URL;
-
+  
+  const userId = localStorage.getItem("userId");
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -63,7 +63,8 @@ const Nav = () => {
       localStorage.setItem("image", res.data.user.profilePic);
       alert(res.data.mesg);
       setUser(res.data.user);
-      navigate("/dashboard");
+      // send the user state to dashboard
+      navigate("/dashboard", { state: { user: res.data.user } });
     } catch (error) {
       console.log(error);
     }
