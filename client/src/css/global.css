@@ -20,9 +20,10 @@ a {
 
 :root {
   --primary: #000000;
-  --secondary: #242526;
+  --secondary: #24252675;
   --button: #fff;
   --white: #ffffff;
   --text: #d2d2d2a6;
   --border: #262626;
+  --overlay: #1f2028;
 }

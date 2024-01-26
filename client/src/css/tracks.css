@@ -1,0 +1,38 @@
+.tracks_con {
+  width: 60%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.tracks_wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.single_actual_tracks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: var(--secondary);
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  /* margin-bottom: 20px; */
+}
+.branch span {
+  background-color: transparent;
+  border: 1.5px solid #00b747;
+  padding: 0px 10px;
+  border-radius: 100vw;
+  margin-left: 5px;
+  font-weight: 300;
+}
+.seeall {
+  color: #3093ee;
+  /* font-size: 14px; */
+  text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/dashboard.css";
+import Tracks from "../components/Tracks";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* tracks */}
+      <Tracks />
     </>
   );
 };
