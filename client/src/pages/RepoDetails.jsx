@@ -1,5 +1,7 @@
 import React from "react";
 import "../css/repodetails.css";
+import { FaArrowRightLong } from "react-icons/fa6";
+
 const RepoDetails = () => {
   return (
     <>
@@ -31,6 +33,11 @@ const RepoDetails = () => {
                 Debugging Feb #1: How I Overcame a CORS Error when posting to
                 Dev.to API.
               </div>
+              <a target="_blank" href="https://blog.rajeshkhadka.info.np/">
+                <div className="arrow_blog">
+                  <FaArrowRightLong />
+                </div>
+              </a>
             </div>
           </div>
         </div>
