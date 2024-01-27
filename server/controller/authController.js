@@ -1,5 +1,5 @@
 import User from "../model/userModal.js";
-
+// add
 export const auth = async (req, res) => {
   try {
     const { imageUrl, name, email } = req.body;
