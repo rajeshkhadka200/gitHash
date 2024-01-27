@@ -2,3 +2,78 @@
   width: 60%;
   margin: 20px auto;
 }
+
+.repo_header p {
+  color: #ccc;
+  margin-top: 5px;
+}
+.specific_commit_with_blog {
+  margin-top: 30px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.commit_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ccc;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.commit_header .hastag {
+  font-size: 35px;
+  color: #00b747;
+  opacity: 0.8;
+}
+.commit_header h3 span {
+  background: var(--secondary);
+  padding: 3px 7px;
+  border-radius: 7px;
+  color: #ccc;
+  margin-left: 5px;
+}
+
+.specific_commit_with_blog .branch {
+  background-color: transparent;
+  border: 2px solid #00b747;
+  padding: 0px 10px;
+  border-radius: 100vw;
+  font-weight: 300;
+  width: fit-content;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border);
+  /* margin: 20px 0px; */
+}
+
+.blog_info_wrapper {
+  padding: 20px 25px;
+}
+
+.single_blog {
+  width: 100%;
+  background-color: var(--secondary);
+  padding: 10px 20px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.single_blog img {
+  height: 50px;
+  width: 90px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 3.5px;
+  margin: 0 80px;
+}
+
+.single_blog .tittle_blog {
+  flex: 1;
+  color: #ccc;
+}
