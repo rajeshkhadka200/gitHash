@@ -49,3 +49,5 @@ export const manageAPIres = async (commitData, repoName) => {
     throw error;
   }
 };
+
+export const generateMarkdown = (result) => {};

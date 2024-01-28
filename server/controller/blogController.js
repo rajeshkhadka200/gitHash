@@ -1,6 +1,10 @@
 import axios from "axios";
 import User from "../model/userModal.js";
-import { getCommitDetails, manageAPIres } from "../utils/function.js";
+import {
+  generateMarkdown,
+  getCommitDetails,
+  manageAPIres,
+} from "../utils/function.js";
 import Repo from "../model/repoModal.js";
 
 export const publishBlog = async (req, res) => {
@@ -24,11 +28,8 @@ export const publishBlog = async (req, res) => {
 
     // if the user has already published the blo under this repo or not
     const repo = await Repo.findOne({ repoURL });
-    if (repo) {
-      console.log("publih under the repo");
-    } else {
-      console.log("Start a new series");
-    }
+
+    const markdown = generateMarkdown(result);
 
     res.status(200).json({
       mesg: "Successfully fetched commit data",
