@@ -1,53 +1,40 @@
 import axios from "axios";
+import User from "../model/userModal.js";
+import { getCommitDetails, manageAPIres } from "../utils/function.js";
+import Repo from "../model/repoModal.js";
 
 export const publishBlog = async (req, res) => {
-  const { repoName, userName, token } = req.body;
+  const { repoName, userName, token, repoURL } = req.body;
   const branch = "main";
 
   try {
-    const apiUrl = `https://api.github.com/repos/${userName}/${repoName}/commits/${branch}`;
+    const apiURL = `https://api.github.com/repos/${userName}/${repoName}/commits/${branch}`;
 
-    const response = await axios.get(apiUrl, {
-      headers: {
-        Authorization: `Bearer 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`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await getCommitDetails(apiURL); // hits to the gitHub api
     const commitData = response.data;
+    const result = await manageAPIres(commitData, repoName); // extract the needed information from commit
 
-    const result = {
-      commitDetails: {
-        sha: commitData.sha,
-        message: commitData.commit.message,
-        committer: commitData.commit.committer.name,
-        date: commitData.commit.committer.date,
-      },
-      repoDetails: {
-        repoName,
-        userName: "rajeshkhadka200",
-        branch: "main",
-      },
-      filesDetails: [],
-    };
+    // identify who requested to publish the blog.
+    const user = await User.findOne({ token });
+    if (!user) {
+      return res.status(404).json({
+        mesg: "Invalid GitHash Token",
+      });
+    }
 
-    commitData.files.forEach((file) => {
-      const fileDetails = {
-        filename: file.filename,
-        additions: file.additions,
-        deletions: file.deletions,
-        changes: file.changes,
-        status: file.status,
-        patch: file.patch,
-      };
-      result.filesDetails.push(fileDetails);
-    });
+    // if the user has already published the blo under this repo or not
+    const repo = await Repo.findOne({ repoURL });
+    if (repo) {
+      console.log("publih under the repo");
+    } else {
+      console.log("Start a new series");
+    }
 
     res.status(200).json({
       mesg: "Successfully fetched commit data",
       result,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       mesg: "Internal server error",
       error,
