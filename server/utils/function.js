@@ -50,4 +50,54 @@ export const manageAPIres = async (commitData, repoName) => {
   }
 };
 
-export const generateMarkdown = (result) => {};
+export const generateMarkdown = async (result) => {
+  const markdown = `
+  ## Commit Details
+  - **SHA:** ${result.commitDetails.sha}
+  - **Message:** ${result.commitDetails.message}
+  - **Committer:** ${result.commitDetails.committer}
+  - **Date:** ${result.commitDetails.date}
+  ----------------------------------------------------
+
+  ## Repository Details
+  - **Repository Name:** ${result.repoDetails.repoName}
+  - **User Name:** ${result.repoDetails.userName}
+  - **Branch:** ${result.repoDetails.branch}
+  ----------------------------------------------------
+
+  ## Changed Files
+  ${result?.filesDetails
+    ?.map((file) => {
+      if (
+        file.filename.split(".").pop() === "yml" ||
+        file.filename.split(".").pop() === "md" ||
+        file.filename.split(".").pop() === "json"
+      ) {
+        return null;
+      }
+
+      return `
+    ### ${
+      file.status === "added"
+        ? "Added"
+        : file.status === "modified"
+        ? "Modified"
+        : "Deleted"
+    }: ${file.filename}
+    - **Additions:** ${file.additions}
+    - **Deletions:** ${file.deletions}
+    - **Changes:** ${file.changes}
+
+    \`\`\`javascript
+    ${file.patch}
+    \`\`\`
+    `;
+    })
+    .filter(Boolean)
+    .join("\n\n")}
+`;
+
+  return markdown;
+};
+
+export const publishBlog = async (title, markdown) => {};
