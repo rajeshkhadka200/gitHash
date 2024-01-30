@@ -1,4 +1,6 @@
 import User from "../model/userModal.js";
+import Repo from "../model/repoModal.js";
+import Commit from "../model/commitModal.js";
 // add
 export const auth = async (req, res) => {
   try {
@@ -90,6 +92,59 @@ export const appAPIKey = async (req, res) => {
       return res.status(200).json({
         mesg: "Publication added",
         user: updatedUser,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      mesg: "Internal server error",
+      error,
+    });
+  }
+};
+
+// get the repos of the user
+export const getRepo = async (req, res) => {
+  const { token } = req.params;
+
+  try {
+    const repo = await Repo.find({ token });
+    if (repo.length > 0) {
+      return res.status(200).json({
+        mesg: "Repo found",
+        repo,
+      });
+    }
+    if (repo.length === 0) {
+      return res.status(204).json({
+        mesg: "No repo found",
+        repo,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      mesg: "Internal server error",
+      error,
+    });
+  }
+};
+
+export const getCommits = async (req, res) => {
+  const { repoURL } = req.body;
+
+  try {
+    // order by timestamp
+
+    const commits = await Commit.find({ repoURL }).sort({ timestamp: -1 });
+    if (commits.length > 0) {
+      return res.status(200).json({
+        mesg: "Commits found",
+        commits,
+      });
+    }
+    if (commits.length === 0) {
+      return res.status(204).json({
+        mesg: "No commits found",
+        commits,
       });
     }
   } catch (error) {

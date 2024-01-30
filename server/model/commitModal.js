@@ -37,6 +37,10 @@ const commitSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
 const Commit = mongoose.model("Commit", commitSchema);
 export default Commit;

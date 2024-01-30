@@ -62,6 +62,7 @@ const Nav = () => {
       localStorage.setItem("userId", res.data.user._id);
       localStorage.setItem("email", res.data.user.email);
       localStorage.setItem("image", res.data.user.profilePic);
+      localStorage.setItem("token", res.data.user.token);
 
       toast.success(res.data.mesg);
       setUser(res.data.user);
