@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const repoSchema = new mongoose.Schema({
+  token: {
+    type: String,
+    required: true,
+  },
   repoName: {
     type: String,
     required: true,

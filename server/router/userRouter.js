@@ -4,7 +4,7 @@ import {
   getUser,
   addPublication,
   appAPIKey,
-} from "../controller/authController.js";
+} from "../controller/userController.js";
 
 const router = Router();
 router.post("/auth", auth);

@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "blogRes": {
+    "data": {
+      "publishPost": {
+        "post": {
+          "id": "65b8947dcb2d7d4477ab1baf",
+          "slug": "3a96c99b49205b5f1ea248051eab3d84369f4480project-one",
+          "title": "added the code in the change",
+          "subtitle": "added the code in the change",
+          "author": {
+            "username": "rajeshkhadka"
+          },
+          "url": "https://rajeshkhadka.hashnode.dev/3a96c99b49205b5f1ea248051eab3d84369f4480project-one",
+          "readTimeInMinutes": 1,
+          "views": 0,
+          "publishedAt": "2024-01-30T06:17:33.759Z"
+        }
+      }
+    }
+  }
+}

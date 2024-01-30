@@ -1,7 +1,23 @@
 import mongoose from "mongoose";
 
 const commitSchema = new mongoose.Schema({
+  repoURL: {
+    type: String,
+    required: true,
+  },
+  token: {
+    type: String,
+    required: true,
+  },
+  sha: {
+    type: String,
+    required: true,
+  },
   commitName: {
+    type: String,
+    required: true,
+  },
+  blogId: {
     type: String,
     required: true,
   },
@@ -15,6 +31,10 @@ const commitSchema = new mongoose.Schema({
   },
   blogImage: {
     type: String,
+    required: true,
+  },
+  readTime: {
+    type: Number,
     required: true,
   },
 });

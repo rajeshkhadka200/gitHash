@@ -4,7 +4,7 @@ import cors from "cors";
 
 // imports routes
 import blogRouter from "./router/blogRouter.js";
-import auth from "./router/authRouter.js";
+import userRouter from "./router/userRouter.js";
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // use routes
 app.use("/api", blogRouter);
-app.use("/api/user", auth);
+app.use("/api/user", userRouter);
 
 // start server
 const port = process.env.PORT || 5000;

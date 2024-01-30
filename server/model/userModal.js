@@ -18,10 +18,12 @@ const userSchema = new mongoose.Schema({
     required: false,
   },
   publication: {
+    // Pub id
     type: String,
     required: false,
   },
   hashnodeApiKey: {
+    //PAT
     type: String,
     required: false,
   },
