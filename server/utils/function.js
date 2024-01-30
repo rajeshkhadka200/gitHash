@@ -79,9 +79,8 @@ export const generateMarkdown = async (result) => {
         ) {
           return null;
         }
-
         return `
-      #### ${index + 1}. ${
+      #### ${index}. ${
           file.status === "added"
             ? "  Added"
             : file.status === "modified"
@@ -102,12 +101,17 @@ export const generateMarkdown = async (result) => {
       -----------------------------------------------
       ## Summary : 👇      
   `;
-
     const fineMarkdown = await removeMarkdownSyntax(markdown);
+    const overview = await generateOverview(fineMarkdown);
     const blogSummary = await generateSummary(fineMarkdown);
-    const finalMarkdown = `${markdown}\n\n${blogSummary}`;
+    const finalMarkdown = `
+    ## Overview : 👇
+    ${overview}
+    ${markdown}\n\n${blogSummary}`;
+
     return finalMarkdown;
   } catch (error) {
+    console.log(error);
     throw new Error("Unable to generate the markdown");
   }
 };
@@ -120,7 +124,6 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
   if (!user) {
     throw new Error("Wrong api token");
   }
-  console.log("user ", user);
 
   const title = result.commitDetails.message;
   const subtitle = result.commitDetails.message;
@@ -221,6 +224,15 @@ export const generateSummary = async (fineMarkdown) => {
  `);
   console.log("summary result ", summary_result);
   return summary_result.rows[0]?.summary;
+};
+const generateOverview = async (fineMarkdown) => {
+  const overview_result = await MindsDB.default.SQL.runQuery(`
+  SELECT markdown, overview
+  FROM mindsdb.githash_blog_overview
+  WHERE markdown="${fineMarkdown}";
+ `);
+  console.log("Overview result ", overview_result);
+  return overview_result.rows[0]?.overview;
 };
 
 export const removeMarkdownSyntax = (markdown) => {
