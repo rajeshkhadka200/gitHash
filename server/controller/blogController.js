@@ -1,12 +1,8 @@
-import axios from "axios";
-import User from "../model/userModal.js";
 import {
   generateMarkdown,
-  generateSummary,
   getCommitDetails,
   manageAPIres,
   post,
-  removeMarkdownSyntax,
   saveCommit,
 } from "../utils/function.js";
 import Repo from "../model/repoModal.js";
@@ -23,7 +19,6 @@ export const publishBlog = async (req, res) => {
 
     const repo = await Repo.findOne({ repoURL: githubRepoUrl });
     const markdown = await generateMarkdown(result);
-
     const blogRes = await post(result, markdown, secretApiKey);
 
     const newCommitRes = await saveCommit(
@@ -34,7 +29,6 @@ export const publishBlog = async (req, res) => {
     );
 
     // save it only in first commit
-    console.log(repo);
     if (!repo) {
       const newRepo = new Repo({
         token: secretApiKey,

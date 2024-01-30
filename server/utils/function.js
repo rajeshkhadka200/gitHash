@@ -190,15 +190,17 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
 
 export const saveCommit = async (result, blogRes, secretApiKey, repoURL) => {
   try {
+    const { sha, message } = result.commitDetails;
+    const { url, title, id, readTimeInMinutes } = blogRes.data.publishPost.post;
     const newCommit = new Commit({
       token: secretApiKey,
-      sha: result.commitDetails.sha,
-      commitName: result.commitDetails.message,
-      blogURL: blogRes.data.publishPost.post.url,
-      blogTitle: blogRes.data.publishPost.post.title,
-      blogId: blogRes.data.publishPost.post.id,
+      sha: sha,
+      commitName: message,
+      blogURL: url,
+      blogTitle: title,
+      blogId: id,
       blogImage: blogRes.data.publishPost.post.coverImage.url,
-      readTime: blogRes.data.publishPost.post.readTimeInMinutes,
+      readTime: readTimeInMinutes,
       repoURL,
     });
     await newCommit.save();
