@@ -1,6 +1,7 @@
 import axios from "axios";
 import User from "../model/userModal.js";
 import Commit from "../model/commitModal.js";
+import MindsDB from "mindsdb-js-sdk";
 
 export const getCommitDetails = async (apiURL) => {
   const token = process.env.GITHUB_CLIENT_ID;
@@ -98,15 +99,20 @@ export const generateMarkdown = async (result) => {
       })
       .filter(Boolean)
       .join("\n\n")}
+      -----------------------------------------------
+      ## Summary : 👇      
   `;
 
-    return markdown;
+    const fineMarkdown = await removeMarkdownSyntax(markdown);
+    const blogSummary = await generateSummary(fineMarkdown);
+    const finalMarkdown = `${markdown}\n\n${blogSummary}`;
+    return finalMarkdown;
   } catch (error) {
     throw new Error("Unable to generate the markdown");
   }
 };
 
-export const post = async (result, markdown, secretApiKey, commitLength) => {
+export const post = async (result, markdown, secretApiKey, blogSummary) => {
   // identify who requested to publish the blog.
 
   const user = await User.findOne({ token: secretApiKey });
@@ -203,4 +209,42 @@ export const saveCommit = async (result, blogRes, secretApiKey, repoURL) => {
     console.log("saving commit ", error);
     throw new Error("Unable to save the commit");
   }
+};
+
+export const generateSummary = async (fineMarkdown) => {
+  const summary_result = await MindsDB.default.SQL.runQuery(`
+  SELECT markdown, summary
+  FROM mindsdb.githash_blog_summary
+  WHERE markdown="${fineMarkdown}";
+ `);
+  console.log("summary result ", summary_result);
+  return summary_result.rows[0]?.summary;
+};
+
+export const removeMarkdownSyntax = (markdown) => {
+  const regex = /(\r\n|\n|\r)/gm;
+  const regex2 = /(\*\*|__)(.*?)\1/gm;
+  const regex3 = /(\*|_)(.*?)\1/gm;
+  const regex4 = /(\#)(.*?)\1/gm;
+  const regex5 = /(\!\[)(.*?)(\]\()(.*?)(\))/gm;
+  const regex6 = /(\[)(.*?)(\]\()(.*?)(\))/gm;
+  const regex7 = /(\`)(.*?)(\`)/gm;
+  const regex8 = /(\~\~)(.*?)(\~\~)/gm;
+  const regex9 = /(<([^>]+)>)/gi;
+  // remove double quotes
+  const regex10 = /\"/gm;
+
+  const result = markdown
+    .replace(regex, "")
+    .replace(regex2, "$2")
+    .replace(regex3, "$2")
+    .replace(regex4, "$2")
+    .replace(regex5, "")
+    .replace(regex6, "$2")
+    .replace(regex7, "$2")
+    .replace(regex8, "$2")
+    .replace(regex9, "")
+    .replace(regex10, "");
+
+  return result;
 };

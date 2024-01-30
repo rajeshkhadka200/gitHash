@@ -5,10 +5,12 @@ import cors from "cors";
 // imports routes
 import blogRouter from "./router/blogRouter.js";
 import userRouter from "./router/userRouter.js";
+import { connectMindsDB } from "./db/mindsdb.js";
 
 const app = express();
 app.use(cors());
 connectDB();
+connectMindsDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

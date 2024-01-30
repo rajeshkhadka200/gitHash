@@ -2,16 +2,17 @@ import axios from "axios";
 import User from "../model/userModal.js";
 import {
   generateMarkdown,
+  generateSummary,
   getCommitDetails,
   manageAPIres,
   post,
+  removeMarkdownSyntax,
   saveCommit,
 } from "../utils/function.js";
 import Repo from "../model/repoModal.js";
 
 export const publishBlog = async (req, res) => {
   const { repoName, userName, githubRepoUrl, secretApiKey } = req.body;
-  console.log(req.body);
   const branch = "main";
 
   try {
@@ -21,9 +22,8 @@ export const publishBlog = async (req, res) => {
     const result = await manageAPIres(commitData, repoName); // extract the needed information from commit
 
     const repo = await Repo.findOne({ repoURL: githubRepoUrl });
-    console.log(repo);
-
     const markdown = await generateMarkdown(result);
+
     const blogRes = await post(result, markdown, secretApiKey);
 
     const newCommitRes = await saveCommit(
