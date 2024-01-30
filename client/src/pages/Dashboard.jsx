@@ -44,9 +44,9 @@ const Dashboard = () => {
           <div className="heading">
             <h2>Your GitHash Api Token 📶</h2>
             <p>
-              Copy the provided API token and, when inserting it into the
-              secrets of the specified GitHub repository, label it as
-              <b>"GitHash"</b> to enable secure tracking and integration.
+              Copy the provided API token, then add it into your GitHub
+              repository's secret. Assign the label <b>"Githash_API_TOKEN"</b>{" "}
+              to the token.
             </p>
           </div>
           <div className="input_box">

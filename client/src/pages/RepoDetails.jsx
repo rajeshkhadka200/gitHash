@@ -36,7 +36,7 @@ const RepoDetails = () => {
           <p>Blog published : {commits?.length}</p>
         </div>
 
-        {commits?.map((item, index) => {
+        {commits?.map((item, index, array) => {
           const {
             blogId,
             blogURL,
@@ -48,6 +48,7 @@ const RepoDetails = () => {
             _id,
             token,
           } = item;
+          const reversedIndex = array.length - index;
           return (
             <div className="specific_commit_with_blog">
               <div className="commit_header">
@@ -55,7 +56,7 @@ const RepoDetails = () => {
                   Commit : <span>{commitName}</span>
                 </h3>
                 <div className="branch">main</div>
-                <div className="hastag"># {index}</div>
+                <div className="hastag">#{reversedIndex}</div>
               </div>
               <div className="line"></div>
               <div className="blog_info_wrapper">

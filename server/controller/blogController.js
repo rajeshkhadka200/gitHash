@@ -8,10 +8,10 @@ import {
   saveCommit,
 } from "../utils/function.js";
 import Repo from "../model/repoModal.js";
-import Commit from "../model/commitModal.js";
 
 export const publishBlog = async (req, res) => {
-  const { repoName, userName, repoURL, secretApiKey } = req.body;
+  const { repoName, userName, githubRepoUrl, secretApiKey } = req.body;
+  console.log(req.body);
   const branch = "main";
 
   try {
@@ -20,7 +20,9 @@ export const publishBlog = async (req, res) => {
     const commitData = response.data;
     const result = await manageAPIres(commitData, repoName); // extract the needed information from commit
 
-    const repo = await Repo.findOne({ repoURL });
+    const repo = await Repo.findOne({ repoURL: githubRepoUrl });
+    console.log(repo);
+
     const markdown = await generateMarkdown(result);
     const blogRes = await post(result, markdown, secretApiKey);
 
@@ -28,15 +30,16 @@ export const publishBlog = async (req, res) => {
       result,
       blogRes,
       secretApiKey,
-      repoURL
+      githubRepoUrl
     );
 
     // save it only in first commit
+    console.log(repo);
     if (!repo) {
       const newRepo = new Repo({
         token: secretApiKey,
         repoName,
-        repoURL,
+        repoURL: githubRepoUrl,
       });
       await newRepo.save();
     }
