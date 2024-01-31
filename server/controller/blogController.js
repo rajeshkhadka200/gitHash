@@ -8,18 +8,35 @@ import {
 import Repo from "../model/repoModal.js";
 
 export const publishBlog = async (req, res) => {
-  const { repoName, userName, githubRepoUrl, secretApiKey } = req.body;
+  const {
+    repoName,
+    userName,
+    githubRepoUrl,
+    secretApiKey,
+    markdownContent,
+    commitMessage,
+  } = req.body;
+  console.log("req.body", req.body);
   const branch = "main";
 
   try {
     const apiURL = `https://api.github.com/repos/${userName}/${repoName}/commits/${branch}`;
     const response = await getCommitDetails(apiURL); // hits to the gitHub api
     const commitData = response.data;
-    const result = await manageAPIres(commitData, repoName); // extract the needed information from commit
-
+    const result = await manageAPIres(commitData, repoName); // extract the needed information from commitData
     const repo = await Repo.findOne({ repoURL: githubRepoUrl });
-    const markdown = await generateMarkdown(result);
-    const blogRes = await post(result, markdown, secretApiKey);
+
+    let markdown;
+    if (!commitMessage.includes("my md")) {
+      markdown = await generateMarkdown(result);
+    }
+
+    let blogRes;
+    if (commitMessage.includes("my md")) {
+      blogRes = await post(result, markdownContent, secretApiKey);
+    } else {
+      blogRes = await post(result, markdown, secretApiKey);
+    }
 
     const newCommitRes = await saveCommit(
       result,

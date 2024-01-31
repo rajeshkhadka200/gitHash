@@ -14,6 +14,7 @@ export const getCommitDetails = async (apiURL) => {
     });
     return response;
   } catch (error) {
+    console.log(error);
     throw new Error("Unable to get the commit details from the api");
   }
 };
