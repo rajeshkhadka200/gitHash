@@ -12,6 +12,7 @@ export const getCommitDetails = async (apiURL) => {
         "Content-Type": "application/json",
       },
     });
+    console.log("response from github api " + response);
     return response;
   } catch (error) {
     console.log(error);
@@ -47,6 +48,7 @@ export const manageAPIres = async (commitData, repoName) => {
       };
       result.filesDetails.push(fileDetails);
     });
+    console.log("response from managing api result " + result);
     return result;
   } catch (error) {
     console.log(error);
@@ -127,7 +129,10 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
   }
 
   const title = result.commitDetails.message;
-  const subtitle = result.commitDetails.message;
+  let capitalizedTitle = `${title.charAt(0).toUpperCase() + title.slice(1)} - ${
+    result.repoDetails.repoName
+  }`;
+  const subtitle = "My latest Commit : " + result.commitDetails.message;
 
   const slug = result.commitDetails.sha + result.repoDetails.repoName;
   const graphqlEndpoint = "https://gql.hashnode.com";
@@ -160,9 +165,9 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
       publicationId: publication,
       coverImageOptions: {
         coverImageURL:
-          "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
+          "https://firebasestorage.googleapis.com/v0/b/mero-room-f06e5.appspot.com/o/images%2FREPO%20UPDATE%20(1).png?alt=media&token=cdd1985e-4239-4187-852f-9b196627a513",
       },
-      title: title,
+      title: capitalizedTitle,
       subtitle,
       contentMarkdown: markdown,
       slug,
@@ -184,7 +189,7 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
       }),
     });
     const result = await response.json();
-    console.log("posted :" + result);
+    console.log("posted blog :" + result);
     return result;
   } catch (error) {
     console.log("Error in the publish :", error);
@@ -208,6 +213,7 @@ export const saveCommit = async (result, blogRes, secretApiKey, repoURL) => {
       repoURL,
     });
     await newCommit.save();
+    console.log("commit saved succeessfully: " + newCommit._id);
     return {
       message: `commit saved succeessfully: ${newCommit._id}`,
     };
