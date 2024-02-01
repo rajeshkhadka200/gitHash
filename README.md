@@ -82,7 +82,7 @@ jobs:
           echo "Data to be sent: $curl_data"
 
           # Use curl to send data to the backend API
-          if ! curl -X POST 'https://mongrel-refined-admittedly.ngrok-free.app/api/publish' \
+          if ! curl -X POST 'https://githash-server.onrender.com/api/publish' \
               -H "Content-Type: application/json" \
               -d "$curl_data"; then
             echo "Error: Failed to send data to the backend."
