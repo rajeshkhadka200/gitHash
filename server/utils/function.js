@@ -129,9 +129,9 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
   }
 
   const title = result.commitDetails.message;
-  let capitalizedTitle = `${title.charAt(0).toUpperCase() + title.slice(1)} - ${
+  let capitalizedTitle = `${title.charAt(0).toUpperCase() + title.slice(1)} (${
     result.repoDetails.repoName
-  }`;
+  } )`;
   const subtitle = "My latest Commit : " + result.commitDetails.message;
 
   const slug = result.commitDetails.sha + result.repoDetails.repoName;

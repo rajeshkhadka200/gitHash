@@ -18,7 +18,9 @@ const Nav = () => {
   useEffect(() => {
     const getProfile = async () => {
       if (userId) {
-        const res = await axios.get(`${api_url}/user/getuser/${userId}`);
+        const res = await axios.get(
+          `http://localhost:5000/api/user/getuser/${userId}`
+        );
         setUser(res.data.user);
       }
     };
