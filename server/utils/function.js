@@ -190,6 +190,7 @@ export const post = async (result, markdown, secretApiKey, blogSummary) => {
 };
 
 export const saveCommit = async (result, blogRes, secretApiKey, repoURL) => {
+  console.log("blog res in commit", blogRes);
   try {
     const { sha, message } = result.commitDetails;
     const { url, title, id, readTimeInMinutes } = blogRes.data.publishPost.post;

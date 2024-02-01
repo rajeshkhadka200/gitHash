@@ -19,7 +19,7 @@ app.use("/api", blogRouter);
 app.use("/api/user", userRouter);
 
 // start server
-const port = process.env.PORT || 5000;
+const port = 3001;
 
 app.listen(port, () => {
   console.log(`🚀 Server started on port ${port}`);

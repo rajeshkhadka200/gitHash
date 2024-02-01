@@ -24,7 +24,9 @@ export const publishBlog = async (req, res) => {
     const response = await getCommitDetails(apiURL); // hits to the gitHub api
     const commitData = response.data;
     const result = await manageAPIres(commitData, repoName); // extract the needed information from commitData
-    const repo = await Repo.findOne({ repoURL: githubRepoUrl });
+    const repo = await Repo.findOne({
+      repoURL: githubRepoUrl,
+    });
 
     let markdown;
     if (!commitMessage.includes("my md")) {
@@ -38,6 +40,7 @@ export const publishBlog = async (req, res) => {
       blogRes = await post(result, markdown, secretApiKey);
     }
 
+    console.log("blog res" + blogRes);
     const newCommitRes = await saveCommit(
       result,
       blogRes,
