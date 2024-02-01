@@ -101,18 +101,10 @@ export const generateMarkdown = async (result) => {
       })
       .filter(Boolean)
       .join("\n\n")}
-      -----------------------------------------------
-      ## Summary : 👇      
+      -----------------------------------------------      
   `;
-    const fineMarkdown = await removeMarkdownSyntax(markdown);
-    const overview = await generateOverview(fineMarkdown);
-    const blogSummary = await generateSummary(fineMarkdown);
-    const finalMarkdown = `
-    ## Overview : 👇
-    ${overview}
-    ${markdown}\n\n${blogSummary}`;
 
-    return finalMarkdown;
+    return markdown;
   } catch (error) {
     console.log(error);
     throw new Error("Unable to generate the markdown");
