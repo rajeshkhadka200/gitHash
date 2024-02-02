@@ -132,8 +132,6 @@ export const getCommits = async (req, res) => {
   const { repoURL } = req.body;
 
   try {
-    // order by timestamp
-
     const commits = await Commit.find({ repoURL }).sort({ timestamp: -1 });
     if (commits.length > 0) {
       return res.status(200).json({

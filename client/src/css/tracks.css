@@ -37,3 +37,8 @@
   /* font-size: 14px; */
   text-decoration: underline;
 }
+
+.no_repo_found {
+  margin-top: 10px;
+  color: #ccc;
+}
