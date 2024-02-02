@@ -90,6 +90,74 @@ jobs:
           fi
 ```
 
+
+# Full Explanation :
+In this section I will provide the full explanation of the above yml script. 👇
+
+## Trigger Configuration
+The workflow is triggered on each push to the `main` branch.
+
+```yaml
+on:
+  push:
+    branches: [main]
+```
+## Job Definitions
+The workflow consists of one job named publish-post, which runs on the latest version of the Ubuntu operating system.
+
+```yaml
+jobs:
+  publish-post:
+    runs-on: ubuntu-latest
+```
+
+## Steps in the Job
+### Step 1: Checkout Code
+This step checks out the code using the actions/checkout action.
+
+```yaml
+- name: Checkout code
+  uses: actions/checkout@v2
+```
+### Step 2: Extract Repository Information
+
+This step extracts information about the GitHub repository, including the repository URL, repository name, and username. It also sets up an API key from GitHub secrets.
+
+```yaml
+- name: Extract Repo Info
+  env:
+    SECRET_API_KEY: ${{ secrets.Githash_API_TOKEN }}
+  id: repo-info
+  run: |
+    # ... (code for extracting repository information)
+```
+
+### Step 3: Extract Commit Message
+This step extracts the commit message from the latest commit.
+
+```yaml
+- name: Extract Commit Message
+  id: extract-commit-message
+  run: |
+    # ... (code for extracting commit message)
+```
+### Step 4: Check Commit Message and Send Data
+This step checks the commit message for specific phrases and sends relevant data to a backend API accordingly. If the commit message contains "avoid publish," the publication is skipped. If it contains "my md," it also extracts and sends Markdown content.
+
+```yaml
+- name: Check Commit Message and Send Data
+  run: |
+    # ... (code for checking commit message and sending data to backend)
+```
+### Additional Notes
+- The workflow utilizes environment variables and outputs from previous steps.
+- Markdown content is extracted from a file named markdown.md if the commit message contains "my md."
+- Data is sent to a backend API (https://githash-server.onrender.com/api/publish) using the curl command.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
 ## Overview
 
 Introducing GitHash - a powerful open-source web application that seamlessly converts your GitHub commits into engaging Hashnode articles. GitHash goes beyond GitHub actions; it's a complete web application with a user-friendly UI dashboard, giving you control over configurations and updates to uniquely showcase your work.
